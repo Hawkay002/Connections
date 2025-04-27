@@ -259,23 +259,23 @@ body.light-mode .hero img {
 @keyframes heartbeatGlowLight {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 30px #3a73ff60, 0 0 50px #3a73ff60;
+    box-shadow: 0 0 30px #ff073a60, 0 0 50px #ff073a60;
   }
   14% {
     transform: scale(1.1);
-    box-shadow: 0 0 60px #3a73ffaa, 0 0 90px #3a73ffaa;
+    box-shadow: 0 0 60px #ff073aaa, 0 0 90px #ff073aaa;
   }
   28% {
     transform: scale(1);
-    box-shadow: 0 0 30px #3a73ff60, 0 0 50px #3a73ff60;
+    box-shadow: 0 0 30px #ff073a60, 0 0 50px #ff073a60;
   }
   42% {
     transform: scale(1.1);
-    box-shadow: 0 0 60px #3a73ffaa, 0 0 90px #3a73ffaa;
+    box-shadow: 0 0 60px #ff073aaa, 0 0 90px #ff073aaa;
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 30px #3a73ff60, 0 0 50px #3a73ff60;
+    box-shadow: 0 0 30px #ff073a60, 0 0 50px #ff073a60;
   }
 }
 @media (min-width: 768px) {
@@ -647,7 +647,7 @@ body.light-mode .popup-content {
   margin-right: auto;
 }
 body.light-mode #datetime-weather {
-  color: #333;
+  color: #333 !important;
 }
 /* Location line (1st line) */
 #location {
@@ -736,7 +736,7 @@ body.light-mode .fas.fa-moon {
   box-shadow: 0 0 40px #ff073a80, 0 0 60px #ff073a80;
 }
 body.light-mode .play-btn {
-  background: conic-gradient(#3a73ff80, #3a73ff80);
+  background: conic-gradient(#ff073a80, #ff073a80);
   box-shadow: 0 0 40px #3a73ff80, 0 0 60px #3a73ff80;
 }
 .play-btn::before {
@@ -759,7 +759,7 @@ body.light-mode .play-btn::before {
   box-shadow: 0 0 40px #ff073a80, 0 0 60px #ff073a80;
 }
 body.light-mode .play-btn:checked {
-  box-shadow: 0 0 40px #3a73ff80, 0 0 60px #3a73ff80;
+  box-shadow: 0 0 40px #ff073a80, 0 0 60px #ff073a80;
 }
 @keyframes borderAnimate {
   0% {
@@ -788,7 +788,7 @@ body.light-mode .play-btn:checked {
   cursor: pointer;
 }
 body.light-mode .play-icon {
-  background-color: #3a73ff80;
+  background-color: #ff073a80;
 }
 .play-btn:checked + .play-icon {
   clip-path: polygon(0 100%, 0% 100%, 100% 100%);
@@ -814,7 +814,7 @@ body.light-mode .play-icon {
 }
 body.light-mode .pause-icon::before,
 body.light-mode .pause-icon::after {
-  background-color: #3a73ff80;
+  background-color: #ff073a80;
 }
 .pause-icon::before {
   left: 0;
@@ -1021,7 +1021,7 @@ body.light-mode .headline {
   margin: 0 auto;
 }
 body.light-mode .subtext {
-  color: #666;
+  color: #666 !important;
 }
 @media (min-width: 768px) {
   .subtext {
@@ -1222,7 +1222,7 @@ body.light-mode #response-message-second {
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
+  transition: all 1s ease-in;
 }
 body.light-mode .theme-toggle {
   background: #f0f0f0;
