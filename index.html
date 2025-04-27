@@ -614,8 +614,9 @@ body.light-mode #submit:hover {
 }
 /* Hide Main Content Initially */
 #mainContent {
-  opacity: 1;
-  display: block;
+  opacity: 0;
+  transition: opacity 2.5s ease-in;
+  display: none; 
 }
 /*--gpay--*/ 
 /* Popup Container */
@@ -1100,14 +1101,14 @@ body.light-mode .table-p {
   font-family: "Orbitron", sans-serif !important;
 }
 body.light-mode .toggle-button {
-  background-color: #3a73ff80;
-  box-shadow: 0 0 20px #3a73ff80;
+  background-color: #ff073a80 !important;
+  box-shadow: 0 0 20px #ff073a80 !important;
 }
 .toggle-button:hover {
   background-color: #ff073a;
 }
 body.light-mode .toggle-button:hover {
-  background-color: #3a73ff;
+  background-color: #ff073a !important;
 }
 .contact {
   display: none;
