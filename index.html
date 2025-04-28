@@ -1390,7 +1390,19 @@ body.light-mode .theme-toggle {
 body.light-mode .theme-toggle i {
   color: #333;
 }
-  
+@media (min-width: 768px) {
+    #cht-box {
+    width: 940px !important;
+    justify-content: center !important; 
+    align-items: center !important;
+    margin: 0 auto !important;
+    padding-left: 20px !important; 
+    padding-right: 20px !important;  
+    }
+  }
+body.light-mode #phone-icon {
+  color: #000 !important; 
+}
 </style>
 </head>
 <body>
@@ -1747,9 +1759,9 @@ body.light-mode .theme-toggle i {
 <h2>Call</h2>
 <div class="grid">
   
-<div class="chat-box">
+<div class="chat-box" id="cht-box">
 <a href="tel:+918777845713">
-<span class="icon fas fa-phone" style="color: #ffffff;"></span>
+<span class="icon fas fa-phone" id="phone-icon" style="color: #ffffff;"></span>
 <p>Phone</p>
 </a>
 </div>
@@ -1759,7 +1771,7 @@ body.light-mode .theme-toggle i {
 <h2>Payments</h2>
 <div class="grid">
 <!-- Google Pay Button -->
-<div class="chat-box">
+<div class="chat-box" id="cht-box">
 <button id="gpay-button" class="icon fab fa-google-pay" style="color: #db4437; border: none; background: none;"></button>
 <p>Google Pay</p>
 </div>
