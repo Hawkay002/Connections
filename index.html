@@ -33,6 +33,85 @@ body.light-mode {
   background: linear-gradient(135deg, #f5f5f5, #e0e0e0, #f5f5f5);
   color: #333;
 }
+
+/* Loader Container */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #000, #1a1a1a, #000);
+  z-index: 10000;
+}
+
+/* SVG Loader Styling */
+svg {
+  width: 200px;
+  height: auto;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    translate: 0px 36px;
+  }
+  50% {
+    translate: 0px 46px;
+  }
+}
+
+@keyframes bounce2 {
+  0%, 100% {
+    translate: 0px 46px;
+  }
+  50% {
+    translate: 0px 56px;
+  }
+}
+
+@keyframes umbral {
+  0% {
+    stop-color: #ff073a2e;
+  }
+  50% {
+    stop-color: rgba(255, 7, 58, 0.519);
+  }
+  100% {
+    stop-color: #ff073a2e;
+  }
+}
+
+@keyframes partciles {
+  0%, 100% {
+    translate: 0px 16px;
+  }
+  50% {
+    translate: 0px 6px;
+  }
+}
+
+#particles {
+  animation: partciles 4s ease-in-out infinite;
+}
+
+#animatedStop {
+  animation: umbral 4s infinite;
+}
+
+#bounce {
+  animation: bounce 4s ease-in-out infinite;
+  translate: 0px 36px;
+}
+
+#bounce2 {
+  animation: bounce2 4s ease-in-out infinite;
+  translate: 0px 46px;
+  animation-delay: 0.5s;
+}
+
 .trail {
   position: absolute;
   width: 20px;
@@ -626,12 +705,13 @@ body.light-mode #submit:hover {
 }
 /* Hide Main Content Initially */
 #mainContent {
-  opacity: 1;
-  display: block; 
+  opacity: 0;
+  transition: opacity 2.5s ease-in;
+  display: none; /* initially hidden */
 }
 body.light-mode #mainContent {
-  opacity: 1;
-  display: block; 
+  opacity: 0;
+  display: none; /* initially hidden */
 }
 /*--gpay--*/ 
 /* Popup Container */
@@ -755,10 +835,20 @@ body.light-mode .fas.fa-moon {
 /* Top-right position and delayed animation container */
 .top-right-wrapper {
   position: fixed;
-  top: 90px; /* moved lower */
-  right: 20px;
+  top: 90px;
+  right: -100px;
   z-index: 1000;
-  opacity: 1;
+  opacity: 0;
+}
+.top-right-wrapper.slideIn {
+  animation: slideIn 1s ease forwards;
+  animation-delay: 4s;
+}
+@keyframes slideIn {
+  to {
+    right: 20px;
+    opacity: 1;
+  }
 }
 .container {
   width: 40px;
@@ -1264,7 +1354,7 @@ body.light-mode #response-message-second {
 .theme-toggle {
   position: fixed;
   top: 90px;
-  left: 20px;
+  left: -100px;
   z-index: 1000;
   background: #141414;
   border: 2px solid #ff073a80;
@@ -1277,6 +1367,17 @@ body.light-mode #response-message-second {
   cursor: pointer;
   box-shadow: 0 0 40px #ff073a80, 0 0 60px #ff073a80;
   transition: all 1s ease-in;
+  opacity: 0;
+}
+.theme-toggle.slideIn {
+  animation: slideInLeft 1s ease forwards;
+  animation-delay: 4s;
+}
+@keyframes slideInLeft {
+  to {
+    left: 20px;
+    opacity: 1;
+  }
 }
 body.light-mode .theme-toggle {
   background: #f0f0f0;
@@ -1293,6 +1394,134 @@ body.light-mode .theme-toggle i {
 </style>
 </head>
 <body>
+<!-- Loader -->
+<div class="loader-container">
+  <svg xmlns="http://www.w3.org/2000/svg" height="200" width="200">
+    <g style="order: -1;">
+      <polygon
+        transform="rotate(45 100 100)"
+        stroke-width="1"
+        stroke="#ff073a80"
+        fill="none"
+        points="70,70 148,50 130,130 50,150"
+        id="bounce"
+      ></polygon>
+      <polygon
+        transform="rotate(45 100 100)"
+        stroke-width="1"
+        stroke="#ff073a80"
+        fill="none"
+        points="70,70 148,50 130,130 50,150"
+        id="bounce2"
+      ></polygon>
+      <polygon
+        transform="rotate(45 100 100)"
+        stroke-width="2"
+        stroke=""
+        fill="#414750"
+        points="70,70 150,50 130,130 50,150"
+      ></polygon>
+      <polygon
+        stroke-width="2"
+        stroke=""
+        fill="url(#gradiente)"
+        points="100,70 150,100 100,130 50,100"
+      ></polygon>
+      <defs>
+        <linearGradient y2="100%" x2="10%" y1="0%" x1="0%" id="gradiente">
+          <stop style="stop-color: #1e2026;stop-opacity:1" offset="20%"></stop>
+          <stop style="stop-color:#414750;stop-opacity:1" offset="60%"></stop>
+        </linearGradient>
+      </defs>
+      <polygon
+        transform="translate(20, 31)"
+        stroke-width="2"
+        stroke=""
+        fill="#ff073a80"
+        points="80,50 80,75 80,99 40,75"
+      ></polygon>
+      <polygon
+        transform="translate(20, 31)"
+        stroke-width="2"
+        stroke=""
+        fill="url(#gradiente2)"
+        points="40,-40 80,-40 80,99 40,75"
+      ></polygon>
+      <defs>
+        <linearGradient y2="100%" x2="0%" y1="-17%" x1="10%" id="gradiente2">
+          <stop style="stop-color: #ff073a00;stop-opacity:1" offset="20%"></stop>
+          <stop
+            style="stop-color:#ff073a54;stop-opacity:1"
+            offset="100%"
+            id="animatedStop"
+          ></stop>
+        </linearGradient>
+      </defs>
+      <polygon
+        transform="rotate(180 100 100) translate(20, 20)"
+        stroke-width="2"
+        stroke=""
+        fill="#ff99a780"
+        points="80,50 80,75 80,99 40,75"
+      ></polygon>
+      <polygon
+        transform="rotate(0 100 100) translate(60, 20)"
+        stroke-width="2"
+        stroke=""
+        fill="url(#gradiente3)"
+        points="40,-40 80,-40 80,85 40,110.2"
+      ></polygon>
+      <defs>
+        <linearGradient y2="100%" x2="10%" y1="0%" x1="0%" id="gradiente3">
+          <stop style="stop-color: #ff073a00;stop-opacity:1" offset="20%"></stop>
+          <stop
+            style="stop-color:#ff073a54;stop-opacity:1"
+            offset="100%"
+            id="animatedStop"
+          ></stop>
+        </linearGradient>
+      </defs>
+      <polygon
+        transform="rotate(45 100 100) translate(80, 95)"
+        stroke-width="2"
+        stroke=""
+        fill="#ff99a780"
+        points="5,0 5,5 0,5 0,0"
+        id="particles"
+      ></polygon>
+      <polygon
+        transform="rotate(45 100 100) translate(80, 55)"
+        stroke-width="2"
+        stroke=""
+        fill="#ff073a80"
+        points="6,0 6,6 0,6 0,0"
+        id="particles"
+      ></polygon>
+      <polygon
+        transform="rotate(45 100 100) translate(70, 80)"
+        stroke-width="2"
+        stroke=""
+        fill="#fff"
+        points="2,0 2,2 0,2 0,0"
+        id="particles"
+      ></polygon>
+      <polygon
+        stroke-width="2"
+        stroke=""
+        fill="#292d34"
+        points="29.5,99.8 100,142 100,172 29.5,130"
+      ></polygon>
+      <polygon
+        transform="translate(50, 92)"
+        stroke-width="2"
+        stroke=""
+        fill="#1f2127"
+        points="50,50 120.5,8 120.5,35 50,80"
+      ></polygon>
+    </g>
+  </svg>
+</div>
+
 <!-- Theme Toggle Button -->
 <button class="theme-toggle" id="themeToggle">
   <i class="fas fa-moon"></i>
@@ -1872,56 +2101,73 @@ modal.style.display = 'none'; // Hide the modal
 // JavaScript to handle the expand/collapse feature
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
-    // Music player appearance
-    const musicPlayer = document.querySelector(".top-right-wrapper");
-    // Play/pause functionality
-    const audio = document.getElementById("background-audio");
-    const playBtn = document.querySelector(".play-btn");
-    playBtn.addEventListener("change", function () {
-      if (this.checked) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    });
-    // Vault section logic — placed here so it waits for everything else
-    const vaultBox = document.getElementById('vault-box');
-    const closeBtn = document.getElementById('close-vault-btn');
-    const vaultContent = document.getElementById('vaultContent');
-    const submitButton = document.getElementById('submit');
-    const passwordInput = document.getElementById('vault-password');
-    const vaultInnerContent = document.getElementById('vault-content');
-    const errorMessage = document.getElementById('error');
-    const correctPassword = "12345";
-    vaultBox.addEventListener('click', function () {
-      if (!vaultBox.classList.contains('active')) {
-        vaultBox.classList.add('active');
-        vaultContent.classList.remove('hidden');
-        closeBtn.classList.remove('hidden');
-      }
-    });
-    submitButton.addEventListener('click', function (event) {
-      event.stopPropagation();
-      if (passwordInput.value === correctPassword) {
-        vaultInnerContent.classList.remove('hidden');
-        errorMessage.classList.add('hidden');
-      } else {
-        errorMessage.textContent = "Incorrect password. Please try again.";
-        errorMessage.classList.remove('hidden');
+    const loader = document.querySelector(".loader-container");
+    const mainContent = document.getElementById("mainContent");
+    loader.style.display = "none";
+    mainContent.style.display = "block";
+    setTimeout(() => {
+      mainContent.style.opacity = "1";
+      
+      // Add slide-in animation to theme toggle
+      themeToggle.classList.add('slideIn');
+      
+      // Music player appearance
+      const musicPlayer = document.querySelector(".top-right-wrapper");
+      musicPlayer.classList.add("slideIn");
+      
+      // Play/pause functionality
+      const audio = document.getElementById("background-audio");
+      const playBtn = document.querySelector(".play-btn");
+      playBtn.addEventListener("change", function () {
+        if (this.checked) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      });
+      
+      // Vault section logic
+      const vaultBox = document.getElementById('vault-box');
+      const closeBtn = document.getElementById('close-vault-btn');
+      const vaultContent = document.getElementById('vaultContent');
+      const submitButton = document.getElementById('submit');
+      const passwordInput = document.getElementById('vault-password');
+      const vaultInnerContent = document.getElementById('vault-content');
+      const errorMessage = document.getElementById('error');
+      const correctPassword = "12345";
+      
+      vaultBox.addEventListener('click', function () {
+        if (!vaultBox.classList.contains('active')) {
+          vaultBox.classList.add('active');
+          vaultContent.classList.remove('hidden');
+          closeBtn.classList.remove('hidden');
+        }
+      });
+      
+      submitButton.addEventListener('click', function (event) {
+        event.stopPropagation();
+        if (passwordInput.value === correctPassword) {
+          vaultInnerContent.classList.remove('hidden');
+          errorMessage.classList.add('hidden');
+        } else {
+          errorMessage.textContent = "Incorrect password. Please try again.";
+          errorMessage.classList.remove('hidden');
+          vaultInnerContent.classList.add('hidden');
+        }
+        passwordInput.value = '';
+      });
+      
+      closeBtn.addEventListener('click', function (event) {
+        event.stopPropagation();
+        vaultBox.classList.remove('active');
+        closeBtn.classList.add('hidden');
+        vaultContent.classList.add('hidden');
         vaultInnerContent.classList.add('hidden');
-      }
-      passwordInput.value = '';
-    });
-    closeBtn.addEventListener('click', function (event) {
-      event.stopPropagation();
-      vaultBox.classList.remove('active');
-      closeBtn.classList.add('hidden');
-      vaultContent.classList.add('hidden');
-      vaultInnerContent.classList.add('hidden');
-      errorMessage.classList.add('hidden');
-      passwordInput.value = '';
-    });
-  }, 50);
+        errorMessage.classList.add('hidden');
+        passwordInput.value = '';
+      });
+    }, 50);
+  }, 5000); // 5 second loader
 });
 //modal for preview
 // Get modal elements
@@ -2049,4 +2295,4 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 </body>
-</html>
+  </html>
