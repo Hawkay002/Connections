@@ -376,7 +376,7 @@ body.light-mode .hero img {
   max-width: 700px;
 }
 body.light-mode .hero p {
-  color: #666;
+  color: #47627a;
 }
 .share-button {
   position: absolute;
@@ -852,12 +852,14 @@ body.light-mode .fas.fa-moon {
     opacity: 1;
   }
 }
+
 .container {
   width: 40px;
   height: 40px;
   position: relative;
   border-radius: 50%;
 }
+
 /* Play button itself */
 .play-btn {
   position: absolute;
@@ -870,10 +872,13 @@ body.light-mode .fas.fa-moon {
   outline: none;
   box-shadow: 0 0 40px #ff073a80, 0 0 60px #ff073a80;
 }
+
+/* Light mode Arctic Ice style */
 body.light-mode .play-btn {
-  background: conic-gradient(#ff073a, #ff073a) !important;
-  box-shadow: 0 0 40px #ff073a, 0 0 60px #ff073a !important;
+  background: conic-gradient(#00b4d8, #00b4d8) !important;
+  box-shadow: 0 0 40px #009ec2, 0 0 60px #009ec2 !important;
 }
+
 .play-btn::before {
   content: "";
   position: absolute;
@@ -885,17 +890,22 @@ body.light-mode .play-btn {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
 body.light-mode .play-btn::before {
-  background-color: #fff;
+  background-color: #ffffff;
 }
+
 .play-btn:checked {
   animation: borderAnimate 700ms ease-in-out 1;
   animation-fill-mode: forwards;
   box-shadow: 0 0 40px #ff073a80, 0 0 60px #ff073a80;
 }
+
 body.light-mode .play-btn:checked {
-  box-shadow: 0 0 40px #00b4d8, 0 0 60px #00b4d8;
+  animation: borderAnimateLight 700ms ease-in-out 1;
+  box-shadow: 0 0 40px #007ba7, 0 0 60px #007ba7;
 }
+
 @keyframes borderAnimate {
   0% {
     transform: rotate(0);
@@ -909,6 +919,21 @@ body.light-mode .play-btn:checked {
     background: conic-gradient(#ff073a80, #ff073a80);
   }
 }
+
+@keyframes borderAnimateLight {
+  0% {
+    transform: rotate(0);
+    background: conic-gradient(#00b4d880, transparent 20%);
+  }
+  80% {
+    background: conic-gradient(#00b4d880, transparent 90%);
+  }
+  100% {
+    transform: rotate(360deg);
+    background: conic-gradient(#00b4d8, #00b4d8);
+  }
+}
+
 /* Play icon triangle */
 .play-icon {
   position: absolute;
@@ -922,12 +947,15 @@ body.light-mode .play-btn:checked {
   transition: all 400ms ease-in-out;
   cursor: pointer;
 }
+
 body.light-mode .play-icon {
   background-color: #00b4d8;
 }
+
 .play-btn:checked + .play-icon {
   clip-path: polygon(0 100%, 0% 100%, 100% 100%);
 }
+
 /* Pause icon container */
 .pause-icon {
   position: absolute;
@@ -938,6 +966,7 @@ body.light-mode .play-icon {
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
+
 /* Pause icon bars */
 .pause-icon::before,
 .pause-icon::after {
@@ -947,24 +976,30 @@ body.light-mode .play-icon {
   height: 100%;
   background-color: #ff073a80;
 }
+
 body.light-mode .pause-icon::before,
 body.light-mode .pause-icon::after {
   background-color: #00b4d8;
 }
+
 .pause-icon::before {
   left: 0;
 }
+
 .pause-icon::after {
   right: 0;
 }
+
 .play-btn:checked ~ .pause-icon::before {
   animation: reveal 300ms ease-in-out 350ms 1;
   animation-fill-mode: forwards;
 }
+
 .play-btn:checked ~ .pause-icon::after {
   animation: reveal 300ms ease-in-out 600ms 1;
   animation-fill-mode: forwards;
 }
+
 @keyframes reveal {
   0% {
     width: 0;
@@ -972,7 +1007,7 @@ body.light-mode .pause-icon::after {
   100% {
     width: 35%;
   }
-}
+                       }
 .wrapper {
   position: relative;
   width: 100%;
