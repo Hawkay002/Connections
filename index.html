@@ -113,58 +113,32 @@ svg {
   translate: 0px 46px;
   animation-delay: 0.5s;
 }
-/* Light Mode Loader Styles */
-body.light-mode .loader-container {
-  background: linear-gradient(135deg, #f0faff, #dff2ff) !important;
-}
-
+/* Light Mode Loader Fixes - ONLY ADD THESE */
 body.light-mode .loader-container svg polygon[stroke="#ff073a80"] {
   stroke: #00b4d8;
 }
 
 body.light-mode .loader-container svg polygon[fill="#ff073a80"] {
   fill: #00b4d8;
+  animation: pulse-blue 2s infinite alternate;
 }
 
 body.light-mode .loader-container svg polygon[fill="#ff99a780"] {
   fill: #e3f6ff;
 }
 
-@keyframes umbral-light {
-  0%, 100% {
-    stop-color: #00b4d8;
-    stop-opacity: 0.5;
-  }
-  50% {
-    stop-color: #00b4d8;
-    stop-opacity: 1;
-  }
+@keyframes pulse-blue {
+  0% { fill-opacity: 0.6; }
+  100% { fill-opacity: 1; }
 }
 
 body.light-mode #animatedStop {
   animation: umbral-light 4s infinite;
 }
 
-body.light-mode #bounce,
-body.light-mode #bounce2 {
-  stroke: #00b4d8;
-}
-
-body.light-mode #particles {
-  animation: partciles 4s ease-in-out infinite;
-}
-
-body.light-mode .loader-container svg polygon[fill="#00b4d8"] {
-  animation: pulse-blue 2s infinite alternate;
-}
-
-@keyframes pulse-blue {
-  0% {
-    fill-opacity: 0.6;
-  }
-  100% {
-    fill-opacity: 1;
-  }
+@keyframes umbral-light {
+  0%, 100% { stop-color: #00b4d8; stop-opacity: 0.5; }
+  50% { stop-color: #00b4d8; stop-opacity: 1; }
   }
 
 .trail {
@@ -1986,40 +1960,23 @@ body.light-mode .line {
 </div>
 </div>
 <script>
-// Theme toggle functionality with loader switching
-const themeToggle = document.getElementById('themeToggle');
-const icon = themeToggle.querySelector('i');
-const darkLoader = document.querySelector('.dark-mode-loader');
-const lightLoader = document.querySelector('.light-mode-loader');
-
-// Apply current theme on load
-function applyTheme(isLightMode) {
-  if (isLightMode) {
-    document.body.classList.add('light-mode');
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
-    darkLoader.style.display = 'none';
-    lightLoader.style.display = 'block';
-    
-    // Force restart animations
-    const loaderContainer = document.querySelector('.loader-container');
-    loaderContainer.style.animation = 'none';
-    void loaderContainer.offsetWidth;
-    loaderContainer.style.animation = '';
-  } else {
-    document.body.classList.remove('light-mode');
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
-    darkLoader.style.display = 'block';
-    lightLoader.style.display = 'none';
-  }
-}
-
-// Check saved preference or system preference
-const currentTheme = localStorage.getItem('theme') || 
-                   (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-applyTheme(currentTheme === 'light');
-
+// Replace just your theme toggle function with this:
+themeToggle.addEventListener('click', () => {
+  const isLightMode = document.body.classList.toggle('light-mode');
+  
+  // Change icon
+  icon.classList.toggle('fa-sun', isLightMode);
+  icon.classList.toggle('fa-moon', !isLightMode);
+  
+  // Save preference
+  localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+  
+  // Force animations to restart
+  const loader = document.querySelector('.loader-container');
+  loader.style.animation = 'none';
+  void loader.offsetWidth; // Trigger reflow
+  loader.style.animation = '';
+});
 // Toggle theme on button click
 themeToggle.addEventListener('click', () => {
   const isLightMode = document.body.classList.toggle('light-mode');
